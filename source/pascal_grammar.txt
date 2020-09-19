@@ -1,0 +1,63 @@
+<Программа> 	::=	[<Об_констант>] [<Об_переменных>] <Тело> POINT _EOF
+
+<Об_констант> 	::= CONST {\IDENTIFIER EQUAL <Выражение> SEMI\}
+
+
+<Об_переменных> ::=	VAR {\<Список_пер> COLON [<Об_массива>] <Тип> SEMI\}
+
+<Список_пер> 	::= {IDENTIFIER COMMA} IDENTIFIER
+
+<Об_массива> 	::= ARRAY L_BRACE (<Число> | IDENTIFIER) ELLIPSIS (<Число> | IDENTIFIER) R_BRACE OF
+
+<Тип> 			::= INTEGER
+					| STRING
+
+<Тело> 			::= BEGIN <Список_команд> END
+
+<Список_команд> ::= {<Команда>}
+
+<Команда> 		::= (<Присвоение> | <Условный_оп> | <Цикл> | <Оп_ввода> | <Оп_вывода>) SEMI
+
+<Оп_ввода> 		::= READLN [<Парам_ввода>] SEMI
+
+<Парам_ввода> 	::= L_PAREN [{IDENTIFIER COMMA} IDENTIFIER] R_PAREN
+
+<Оп_вывода> 	::= WRITELN [<Парам_вывода>] SEMI
+
+<Парам_вывода>	::= L_PAREN [{<Выражение> COMMA} <Выражение>] R_PAREN
+
+<Присвоение>	::= <Переменная> ASSIGMENT <Выражение>
+
+<Условный_оп>	::= IF <Бул_выр> THEN (<Тело> | <Команда>) [ELSE (<Тело> | <Команда>)] 
+
+<Цикл>			::= WHILE <Бул_выр> DO (<Тело> | <Команда>)
+
+<Выражение>		::= L_PAREN <Выражение> R_PAREN
+					| <Член> {<Ариф_оп> <Член>} 
+
+<Бул_выр>		::= L_PAREN <Бул_выр> R_PAREN
+					| <Член> {<Лог_оп> <Член>} 
+					
+
+<Член>			::= <Число> 
+					| <Переменная>	
+					| STRING_LITERAL
+
+<Число>			::= [MINUS] (NUM_2 | NUM_8 | NUM_10 | NUM_16)
+
+<Переменная>	::= IDENTIFIER [L_BRACE (IDENTIFIER | <Число>) R_BRACE]
+
+<Ариф_оп>		::= PLUS 
+					| MINUS 
+					| MULT 
+					| DIV 
+					| MOD
+
+<Лог_оп>		::=	AND
+					| OR
+					| EQUAL
+					| NOT_EQUAL
+					| LESS
+					| LARGER
+					| LESS_OR_EQUAL
+					| LARGER_OR_EQUAL
