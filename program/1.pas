@@ -1,6 +1,8 @@
 const g = $A + -1;
 	k = 'ewggew';
 
+Const str = 'Hello';
+
 Var z, b ,n, arr: array [1..20] of integer;
         h, j, x: array [1..5] of string[10];
         p: integer;
