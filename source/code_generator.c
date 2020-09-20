@@ -493,7 +493,7 @@ int EmitExpression(FILE *FAsm, struct AstNode *ExpressionNode, HashNode **Identi
 				fprintf(FAsm, "\tpopl %%eax\n");
 				fprintf(FAsm, "\tpopl %%edx\n");
 
-				fprintf(FAsm, "\tmull %%edx\n");
+				fprintf(FAsm, "\timull %%edx\n");
 
 				fprintf(FAsm, "\tpushl %%eax\n");
 			}
