@@ -3,6 +3,7 @@
 /*=======Automagically Detected Files To Include=====*/
 #include "unity.h"
 #include "../source/lexer.h"
+#include "../source/parser_ast.h"
 
 /*=======External Functions This Runner Calls=====*/
 extern void setUp(void);
@@ -13,6 +14,7 @@ extern void test_Keyword_Token(void);
 extern void test_Comparison_Token(void);
 extern void test_Valid_Character_Token(void);
 extern void test_Invalid_Character_Token(void);
+extern void test_Declaration_And_Print_Constant(void);
 
 
 /*=======Mock Management=====*/
@@ -75,13 +77,16 @@ static void run_test(UnityTestFunction func, const char* name, int line_num)
 /*=======MAIN=====*/
 int main(void)
 {
-  UnityBegin("lexer_test.c");
+  UnityBegin("lexer_and_parser_tests.c");
   run_test(test_Numbers_Token, "test_Numbers_Token", 33);
   run_test(test_Identifier_Token, "test_Identifier_Token", 62);
   run_test(test_Keyword_Token, "test_Keyword_Token", 87);
   run_test(test_Comparison_Token, "test_Comparison_Token", 116);
   run_test(test_Valid_Character_Token, "test_Valid_Character_Token", 140);
   run_test(test_Invalid_Character_Token, "test_Invalid_Character_Token", 165);
+
+  /*****************************************PARSER*****************************************/
+  run_test(test_Declaration_And_Print_Constant, "test_Declaration_And_Print_Constant", 581);
 
   return UnityEnd();
 }

@@ -24,7 +24,7 @@ UNITY_ROOT=../Unity-master
 
 TARGET_BASE1=lexer_test
 TARGET1 = $(TARGET_BASE1)$(TARGET_EXTENSION)
-SRC_FILES1=$(UNITY_ROOT)/src/unity.c ../source/lexer.c  lexer_test.c  lexer_test_runner.c
+SRC_FILES1=$(UNITY_ROOT)/src/unity.c ../source/lexer.c ../source/parser_ast.c lexer_and_parser_tests.c  lexer_test_runner.c -lm
 INC_DIRS=-Isrc -I$(UNITY_ROOT)/src
 SYMBOLS=
 
@@ -34,8 +34,8 @@ default: $(SRC_FILES1)
 	$(C_COMPILER) $(CFLAGS) $(INC_DIRS) $(SYMBOLS) $(SRC_FILES1) -o $(TARGET1)
 	- ./$(TARGET1)
 
-lexer_test_runner.c: lexer_test.c
-	ruby $(UNITY_ROOT)/auto/generate_test_runner.rb lexer_test.c  lexer_test_runner.c
+lexer_test_runner.c: lexer_and_parser_tests.c
+	ruby $(UNITY_ROOT)/auto/generate_test_runner.rb lexer_and_parser_tests.c  lexer_test_runner.c
 
 clean:
 	$(CLEANUP) $(TARGET1)
