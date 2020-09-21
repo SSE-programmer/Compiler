@@ -203,7 +203,7 @@ int AsmBodyCommands(FILE *FAsm, struct AstNode *BodyNode, HashNode **IdentifierT
 							{
 								fprintf(FAsm, "\tpushl $%d\n", BodyNode->Body.CommandList[i].Write.ExpressionList[j].Constant.Value[k]);
 								if (k == strlen(BodyNode->Body.CommandList[i].Write.ExpressionList[j].Constant.Value) - 2 
-									&& j == BodyNode->Body.CommandList[i].Write.ArgCount)
+									&& j == BodyNode->Body.CommandList[i].Write.ArgCount - 1)
 								{
 									fprintf(FAsm, "\tpushl $string_format_symbol_nl\n");
 								}
