@@ -1314,7 +1314,8 @@ struct ReturnStruct *ParseDeclarationConst(struct stream_cursor_position *stream
 	ReturnStruct->LastToken = Token;
 
 	char ConstName[32];
-	int ConstX = Token.X, ConstY = Token.Y;
+
+	int ConstX, ConstY;
 
 	do
 	{
@@ -1322,6 +1323,9 @@ struct ReturnStruct *ParseDeclarationConst(struct stream_cursor_position *stream
 		if (Token.Class == IDENTIFIER)
 		{
 			strcpy(ConstName, Token.Lexeme);
+
+			ConstX = Token.X; 
+			ConstY = Token.Y;
 
 			Token = NextToken(source_code, stream_cursor_position);
 			ReturnStruct->LastToken = Token;
@@ -1938,8 +1942,8 @@ struct ReturnStruct *ParseExpression(struct stream_cursor_position *stream_curso
 
 				RightNode->Type = AstNodeVariable;
 				strcpy(RightNode->Variable.Name, TempToken.Lexeme);
-				RightNode->X = Token.X;
-				RightNode->Y = Token.Y;
+				RightNode->X = TempToken.X;
+				RightNode->Y = TempToken.Y;
 				RightNode->Variable.ParentLink = NewNode;
 				break;
 
@@ -1950,8 +1954,8 @@ struct ReturnStruct *ParseExpression(struct stream_cursor_position *stream_curso
 				RightNode->Constant.Type = Integer;
 				TempToken = DecimalValue(TempToken);
 				strcpy(RightNode->Constant.Value, TempToken.Lexeme);
-				RightNode->X = Token.X;
-				RightNode->Y = Token.Y;
+				RightNode->X = TempToken.X;
+				RightNode->Y = TempToken.Y;
 				RightNode->Constant.ParentLink = NewNode;
 				break;
 
@@ -1962,8 +1966,8 @@ struct ReturnStruct *ParseExpression(struct stream_cursor_position *stream_curso
 				RightNode->Constant.Type = Integer;
 				TempToken = DecimalValue(TempToken);
 				strcpy(RightNode->Constant.Value, TempToken.Lexeme);
-				RightNode->X = Token.X;
-				RightNode->Y = Token.Y;
+				RightNode->X = TempToken.X;
+				RightNode->Y = TempToken.Y;
 				RightNode->Constant.ParentLink = NewNode;
 				break;
 
@@ -1973,8 +1977,8 @@ struct ReturnStruct *ParseExpression(struct stream_cursor_position *stream_curso
 				RightNode->Type = AstNodeConstant;
 				RightNode->Constant.Type = Integer;
 				strcpy(RightNode->Constant.Value, TempToken.Lexeme);
-				RightNode->X = Token.X;
-				RightNode->Y = Token.Y;
+				RightNode->X = TempToken.X;
+				RightNode->Y = TempToken.Y;
 				RightNode->Constant.ParentLink = NewNode;
 				break;
 
@@ -1985,8 +1989,8 @@ struct ReturnStruct *ParseExpression(struct stream_cursor_position *stream_curso
 				RightNode->Constant.Type = Integer;
 				TempToken = DecimalValue(TempToken);
 				strcpy(RightNode->Constant.Value, TempToken.Lexeme);
-				RightNode->X = Token.X;
-				RightNode->Y = Token.Y;
+				RightNode->X = TempToken.X;
+				RightNode->Y = TempToken.Y;
 				RightNode->Constant.ParentLink = NewNode;
 				break;
 
@@ -1996,8 +2000,8 @@ struct ReturnStruct *ParseExpression(struct stream_cursor_position *stream_curso
 				RightNode->Type = AstNodeConstant;
 				RightNode->Constant.Type = String;
 				strcpy(RightNode->Constant.Value, TempToken.Lexeme);
-				RightNode->X = Token.X;
-				RightNode->Y = Token.Y;
+				RightNode->X = TempToken.X;
+				RightNode->Y = TempToken.Y;
 				RightNode->Constant.ParentLink = NewNode;
 				break;
 
