@@ -7,6 +7,7 @@ C_COMPILER=gcc
 UNITY_ROOT=../Unity-master
 
 #CFLAGS=-std=c89
+CFLAGS += -g
 #CFLAGS += -Wall
 #CFLAGS += -Wextra
 #CFLAGS += -Wpointer-arith
@@ -22,7 +23,7 @@ UNITY_ROOT=../Unity-master
 #CFLAGS += -Wold-style-definition
 #CFLAGS += -Wno-misleading-indentation
 
-TARGET_BASE1=lexer_test
+TARGET_BASE1=lexer_and_parser_tests
 TARGET1 = $(TARGET_BASE1)$(TARGET_EXTENSION)
 SRC_FILES1=$(UNITY_ROOT)/src/unity.c ../source/lexer.c ../source/parser_ast.c lexer_and_parser_tests.c  lexer_test_runner.c -lm
 INC_DIRS=-Isrc -I$(UNITY_ROOT)/src
