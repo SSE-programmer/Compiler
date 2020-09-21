@@ -4,6 +4,7 @@
 #include "unity.h"
 #include "../source/lexer.h"
 #include "../source/parser_ast.h"
+#include <stdio.h>
 
 /*=======External Functions This Runner Calls=====*/
 extern void setUp(void);
@@ -78,15 +79,13 @@ static void run_test(UnityTestFunction func, const char* name, int line_num)
 int main(void)
 {
   UnityBegin("lexer_and_parser_tests.c");
-  run_test(test_Numbers_Token, "test_Numbers_Token", 33);
-  run_test(test_Identifier_Token, "test_Identifier_Token", 62);
-  run_test(test_Keyword_Token, "test_Keyword_Token", 87);
-  run_test(test_Comparison_Token, "test_Comparison_Token", 116);
-  run_test(test_Valid_Character_Token, "test_Valid_Character_Token", 140);
-  run_test(test_Invalid_Character_Token, "test_Invalid_Character_Token", 165);
-
-  /*****************************************PARSER*****************************************/
-  run_test(test_Declaration_And_Print_Constant, "test_Declaration_And_Print_Constant", 581);
+  run_test(test_Numbers_Token, "test_Numbers_Token", 34);
+  run_test(test_Identifier_Token, "test_Identifier_Token", 63);
+  run_test(test_Keyword_Token, "test_Keyword_Token", 88);
+  run_test(test_Comparison_Token, "test_Comparison_Token", 117);
+  run_test(test_Valid_Character_Token, "test_Valid_Character_Token", 141);
+  run_test(test_Invalid_Character_Token, "test_Invalid_Character_Token", 166);
+  run_test(test_Declaration_And_Print_Constant, "test_Declaration_And_Print_Constant", 594);
 
   return UnityEnd();
 }
