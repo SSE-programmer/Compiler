@@ -523,6 +523,20 @@ int CheckingCommandExpression(struct AstNode *BodyNode, HashNode **Table, struct
 
 			if (TempNode->Data->Type == _String)
 			{
+				if (BodyNode->Body.CommandList[i].Assign.VariableLink->Variable.OffsetExpression != NULL)
+				{
+					IndexType = CheckingVariableType(BodyNode->Body.CommandList[i].Assign.VariableLink->Variable.OffsetExpression, Table, RootLink);
+
+					if (IndexType != _Integer)
+					{
+						printf("\033[01;31m<%d:%d> \"%s\" Семантическая ошибка:\033[0m индекс массива не целочисленный;\n",
+							   BodyNode->Body.CommandList[i].Assign.VariableLink->Y, BodyNode->Body.CommandList[i].Assign.VariableLink->X, BodyNode->Body.CommandList[i].Assign.VariableLink->Variable.Name);
+						RootLink->Root.ErrorCount++;
+
+						break;
+					}
+				}
+
 				if (BodyNode->Body.CommandList[i].Assign.RightLink->Type == AstNodeConstant)
 				{
 					if (BodyNode->Body.CommandList[i].Assign.RightLink->Constant.Type != String)
@@ -740,6 +754,25 @@ int CheckingCommandExpression(struct AstNode *BodyNode, HashNode **Table, struct
 								RootLink->Root.ErrorCount++;
 
 								continue;
+							}
+						}
+					}
+
+					if (TempNode->Data->Type == _String)
+					{
+						VariableType IndexType;
+
+						if (BodyNode->Body.CommandList[i].Read.ListVariable[j].OffsetExpression != NULL)
+						{
+							IndexType = CheckingVariableType(BodyNode->Body.CommandList[i].Read.ListVariable[j].OffsetExpression, Table, RootLink);
+
+							if (IndexType != _Integer)
+							{
+								printf("\033[01;31m<%d:%d> \"%s\" Семантическая ошибка:\033[0m индекс массива не целочисленный;\n",
+									   BodyNode->Body.CommandList[i].Y, BodyNode->Body.CommandList[i].X, BodyNode->Body.CommandList[i].Assign.VariableLink->Variable.Name);
+								RootLink->Root.ErrorCount++;
+
+								break;
 							}
 						}
 					}
