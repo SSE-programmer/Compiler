@@ -9,8 +9,9 @@ begin
 	
 	str := 'Hello world';
 	str[5] := 'c';
+	readln(str[12]);
 
-	writeln(s);
+	writeln(s, str);
 
 
 	if 'a' = 'b' then
